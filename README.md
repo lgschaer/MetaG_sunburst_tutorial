@@ -1,8 +1,6 @@
 # Making a sunburst plot using the sunburstR package
 
-### This outputs an interactive html file, hover over each section to see taxonomic names. 
 
-See "example.html"
 
 ### Colors are challenging with this package since you must input a vector of colors in exactly the right order to color by phylum like this example.
 
@@ -59,11 +57,14 @@ colors <- c(#domain
 
 ```
 
-
-
-
-
+### This outputs an interactive html file, hover over each section to see taxonomic names. 
 
 ```{r pressure, echo=FALSE}
 sunburst(data = data.frame(xtabs(V2~Path, table)), colors = colors, legend = FALSE)
 ```
+
+See "example.html" (https://github.com/lgschaer/MetaG_tutorials/blob/main/example.html)
+
+![image](https://github.com/lgschaer/MetaG_tutorials/assets/47119257/4cd7eae5-3bfc-42d5-ae8a-458be061271b)
+
+
