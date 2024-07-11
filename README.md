@@ -352,7 +352,7 @@ colors <- c(#domain
 sunburst(data = data.frame(xtabs(V2~Path, table)), colors = colors, legend = FALSE)
 ```
 
-Download "example.html" (https://raw.githubusercontent.com/lgschaer/MetaG_sunburst_tutorial/main/example.html)
+Download "example.html" (https://github.com/lgschaer/MetaG_sunburst_tutorial/blob/main/example.html)
 
 ![image](https://github.com/lgschaer/MetaG_tutorials/assets/47119257/4cd7eae5-3bfc-42d5-ae8a-458be061271b)
 
