@@ -1,6 +1,39 @@
 # Making a sunburst plot using the sunburstR package
 
+### Load and install required packages
 
+```{r}
+#load packages
+library(tidyverse)
+#install.packages("sunburstR")
+library(sunburstR)
+```
+
+### Load the data set, this code will pull the example data directly from github
+
+This block of code also performs several manipulations on the table: 
+1) filter to only include "winning" MAGs from dRep (redundant/lower quality MAGs will not be included)
+2) replace any "-" in taxonomic names with "_"
+3) replace any blank annotations with "Unclassified"
+4) create a "Path" column with all taxonomic levels
+5) add a column "V2" where all values are equal to 1 (used to calculate the abundance of each taxonomic level/annotation)
+6) sort by "Path"
+
+```{r}
+#load data
+table <- read.csv(url("https://raw.githubusercontent.com/lgschaer/MetaG_tutorials/main/summary_table.csv")) %>%
+  filter(dRep == "winner") %>%
+  mutate_at(vars(Domain, Phylum, Class, Order, Family, Genus, Species), funs(gsub("-", "_", .))) %>%
+  mutate(
+    Species = ifelse(is.na(Species), "Unclassified", Species),
+    Genus = ifelse(is.na(Genus), "Unclassified", Genus),
+    Path = paste(Domain, Phylum, Class, Order, Family, Genus, Species, sep = "-"),
+    V2 = 1
+  ) %>%
+  select(Domain, Phylum, Class, Order, Family, Genus, Species, Path, V2) %>%
+  arrange(Path)
+head(table)
+```
 
 ### Colors are challenging with this package since you must input a vector of colors in exactly the right order to color by phylum like this example.
 
